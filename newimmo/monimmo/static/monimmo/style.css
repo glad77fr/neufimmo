@@ -1,0 +1,32 @@
+
+.test {
+    color: black;
+    font-size: x-large;
+    font-family: "Roboto";
+}
+
+
+p {
+font-family:"Roboto";
+}
+
+.carousel-control-prev{
+      left:20%;
+}
+
+.carousel-control-next{
+right:20%;
+
+}
+
+.nav-link{
+color: grey;
+}
+
+.nav-link:hover{
+color: red;
+}
+
+.nav-link.active{
+color: #048B9A !important;
+}
