@@ -33,3 +33,9 @@ class Programme(models.Model):
         if self.date_livraison_act is None:
             self.date_livraison_act = self.date_livraison_ini
         super().save(*args, **kwargs)
+
+class Post(models.Model):
+    post_at = models.DateTimeField(auto_now_add=True)
+    content = models.CharField(max_length=1500, blank=True, null=True)
+    title = models.CharField(max_length=50, blank=True, null=True)
+    slug = AutoSlugField(populate_from='content', always_update=True, max_length=255, editable=True, blank=True)

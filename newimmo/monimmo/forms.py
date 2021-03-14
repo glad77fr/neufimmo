@@ -1,8 +1,9 @@
-from django.forms import ModelForm
-from .models import Programme
+from django import forms
+from .models import Post
 
-def ProgrammeForm(ModelForm):
+class PostModelForm(forms.ModelForm):
     class Meta:
-        model = Programme
-        fields = ['nom', 'promoteur', 'description', 'date_livraison_ini', 'date_livraison_act']
-
+        model = Post
+        fields = [
+            "title",
+            "content"]
