@@ -1,26 +1,20 @@
-
 .test {
-    color: black;
     font-size: x-large;
     font-family: "Roboto";
 }
 
-
-p {
-font-family:"Roboto";
+h3 {
+font-size: medium;
 }
 
-.carousel-control-prev{
-      left:20%;
-}
 
-.carousel-control-next{
-right:20%;
-
+strong {
+font-weight : bold;
+color: #048B9A;
 }
 
 .nav-link{
-color: grey;
+color: #048B9A !important;
 }
 
 .nav-link:hover{
@@ -29,4 +23,11 @@ color: red;
 
 .nav-link.active{
 color: #048B9A !important;
+}
+
+.montest {
+display: flex;
+flex-direction: row;
+flex-basis: 0;
+flex-grow: 1;
 }

@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Promoteur, Programme
-from django.views.generic import TemplateView, ListView, DetailView
+from .models import Promoteur, Programme, Subject
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.db.models import Q
-from .forms import PostModelForm
+from .forms import SubjectModelForm
+
 
 class Detail_view(DetailView):
     model = Programme
@@ -20,11 +21,9 @@ class SearchResultsView(ListView):
             (Q(nom__icontains=query))
         return object_list
 
-def Post_model_view(request):
-    form = PostModelForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-    context = {
-        "form" : form
-    }
-    return render(request,"monimmo/forms/Forum_post.html", context)
+class Subject_model_view(CreateView):
+    model = Subject
+    template_name = "monimmo/forms/Subject_post.html"
+    form_class = SubjectModelForm
+
+

@@ -1,9 +1,16 @@
 from django import forms
-from .models import Post
+from .models import Subject
 
-class PostModelForm(forms.ModelForm):
+class SubjectModelForm(forms.ModelForm):
     class Meta:
-        model = Post
-        fields = [
-            "title",
-            "content"]
+        model = Subject
+
+        fields = (
+            "title", "content")
+
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Titre du sujet'}),
+            "content": forms.Textarea(attrs={'class': 'form-control', 'placeholder' : 'Contenu du sujet'}),
+        }
+
+        labels = {'title' : 'Titre', 'content' : 'Message', 'class': 'form-text'}

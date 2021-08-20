@@ -1,4 +1,6 @@
 {% extends "monimmo/base.html" %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
 {% block content %}
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" href="#">Liste des messages</a>
+    <a class="nav-link active" href="#">Info sur le programme</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" href="#">Thèmes messages</a>
@@ -22,7 +24,24 @@
   </li>
 </ul>
 
-<p> {{programme.nom}}</p>
+<div class="montest">
+  <div class="card-body">
+    <h3> Bienvenue sur l'espace du programme <strong>{{programme.nom}}</strong></h3>
+    <br>
+    <p1>{{programme.description}}</p1>
+  </div>
+
+  <div class="card-body" style="width: 60rem;">
+    <p> Promoteur : <br> <strong> {{programme.promoteur}} </strong> </p>
+    <p> Date de livraison prévue : <br> <strong>{{programme.date_livraison_act}}</strong> <br></p>
+    <p> Avancement du programme : <br> <strong> {{programme.get_statut_display }}  </strong> </p>
+
+    </p>
+  </div>
+
+
+</div>
+
 {% endblock %}
 
 </body>

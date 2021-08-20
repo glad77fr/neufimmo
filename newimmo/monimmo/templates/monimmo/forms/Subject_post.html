@@ -1,0 +1,17 @@
+{% extends "monimmo/base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Créer un nouveau sujet{% endblock %}</title>
+</head>
+
+<h1> Poster un nouveau sujet</h1>
+<br>
+<div>
+    <form method="POST"> {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="btn btn-primary" value="Save" />
+    </form>
+</div>
+{% endblock  %}

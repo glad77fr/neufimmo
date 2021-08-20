@@ -38,4 +38,13 @@ class Post(models.Model):
     post_at = models.DateTimeField(auto_now_add=True)
     content = models.CharField(max_length=1500, blank=True, null=True)
     title = models.CharField(max_length=50, blank=True, null=True)
-    slug = AutoSlugField(populate_from='content', always_update=True, max_length=255, editable=True, blank=True)
+    slug = AutoSlugField(populate_from='title', always_update=True, max_length=255, editable=True, blank=True)
+
+class Subject(models.Model):
+    title = models.CharField(max_length=50, blank=True, null=True)
+    content = models.CharField(max_length=1500, blank=True, null=True)
+    post_at = models.DateTimeField(auto_now_add=True)
+
+    def get_absolute_url(self):
+        return reverse("form_subject",
+                       args=(str(self.id)))
