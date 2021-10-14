@@ -1,0 +1,59 @@
+{% extends "monimmo/base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %} Détail sujet {% endblock %}</title>
+</head>
+
+{% block content %}
+<body>
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href={{Programme.get_absolute_url}}>Info sur le programme</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href={{Programme.get_absolute_url}}themes>Forum</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Link</a>
+  </li>
+</ul>
+
+<br>
+<p> Programme : {{Programme.nom}}</p>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href={{Programme.get_absolute_url}}themes>Thèmes</a></li>
+    <li class="breadcrumb-item" aria-current="page"><a href={{Programme.get_absolute_url}}themes/{{active_topic.slug}}>{{active_topic.title}}</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{Subject.title}}</li>
+  </ol>
+</nav>
+<h5> Sujet : {{Subject.title}}</h5>
+<br>
+
+
+<div class="card" style="width: 100rem;">
+  <div>
+    {{Subject.post_at}}
+  </div>
+    <div class="card-body">
+      <p class="card-text">{{Subject.content}} </p>
+    </div>
+</div>
+<br>
+{% for post in Posts %}
+<div class="card" style="width: 100rem;">
+  <div> {{post.post_at}} </div>
+    <div class="card-body">
+      <p class="card-text">{{post.content}}</p>
+    </div>
+</div>
+<br>
+{% endfor %}
+
+</body>
+{% endblock %}

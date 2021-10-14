@@ -8,10 +8,10 @@
 
 <h1> Poster un nouveau sujet</h1>
 <br>
-<div>
-    <form method="POST"> {% csrf_token %}
+<div class="form-group">
+    <form method="POST"> {% csrf_t oken %}
         {{form.as_p}}
-        <input type="submit" class="btn btn-primary" value="Save" />
+        <input type="submit" class="btn btn-primary" value="Poster" />
     </form>
 </div>
 {% endblock  %}

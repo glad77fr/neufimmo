@@ -1,0 +1,48 @@
+{% extends "monimmo/base.html" %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %} Sujets {% endblock %}</title>
+</head>
+<body>
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href={{Programme.get_absolute_url}}>Info sur le programme</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active " href={{Programme.get_absolute_url}}themes>Forum</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  </li>
+</ul>
+<br>
+<p> Programme : {{Programme.nom}}</p>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href={{Programme.get_absolute_url}}themes>Thèmes</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{active_topic.title}}</li>
+  </ol>
+</nav>
+
+<h5>Thème : {{active_topic.title}}</h5>
+<br>
+<li class="list-group list-group-numbered">
+    {% for subject, nb_post in topic %}
+  <li class="list-group-item d-flex justify-content-between align-items-start">
+    <div class="ms-2 me-auto">
+      <a class="fw-bold" href={{subject.slug}}/{{subject.pk}}>{{subject.title}}</a>
+    </div>
+    <span class="badge bg-primary rounded-pill">{{nb_post}}</span>
+  </li>
+</li>
+</body>
+{% endfor %}
+
+{% endblock %}
