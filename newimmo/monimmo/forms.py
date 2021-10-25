@@ -1,16 +1,20 @@
 from django import forms
 from .models import Subject
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext_lazy as _
+
 
 class SubjectModelForm(forms.ModelForm):
     class Meta:
         model = Subject
         fields = (
-            "title",  "topic", "content")
+           "programme", "topic", "title", "content")
 
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control col-md-4', 'placeholder' : 'Titre du sujet', 'wight':"30"}),
-            'topic': forms.Select(attrs={'class': 'form-control col-md-4'}),
-            "content": forms.Textarea(attrs={'class': 'form-control col-md-10', 'placeholder' : 'Contenu du sujet'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder' : 'Titre du sujet', 'width':'30px'}),
+            "programme": forms.Select(attrs={'class': 'form-control'}),
+            'topic': forms.Select(attrs={'class': 'form-control'}),
+            "content": forms.Textarea(attrs={'class': 'form-control', 'placeholder' : 'Contenu du sujet'}),
         }
 
         labels = {'title' : 'Titre', 'content' : 'Message', 'topic':'Thème','class': 'form-text'}

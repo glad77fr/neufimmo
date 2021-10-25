@@ -69,7 +69,6 @@ class Subject(models.Model):
             self.slug = slugify(self.slug)
         super().save(*args, **kwargs)
 
-
 class Post(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     post_at = models.DateTimeField(auto_now_add=True)

@@ -30,6 +30,7 @@ def SubjectListView(request, prog_pk, topic_slug, slug):
         list_post.append(len(Post.objects.filter(subject=sub.pk)))
     return render(request, 'monimmo/pages/subjects.html', {"Sub_List":List_Sub, "Programme":Prog,
                                                            "topic" : zip(List_Sub, list_post), "test":list_post, "active_topic" : topic})
+
 def SubjectDetail(request,prog_pk, topic_slug, slug,sub_pk, post_slug):
     Prog = Programme.objects.get(pk=prog_pk)
     sub = Subject.objects.get(pk=sub_pk)
@@ -53,5 +54,21 @@ class Subject_model_view(CreateView):
     model = Subject
     template_name = "monimmo/forms/subject_post.html"
     form_class = SubjectModelForm
+
+    def get_initial(self):
+        initial = super().get_initial()
+        # initial["content"] = self.request.GET.get('prog_pk')
+        initial["programme"] = self.kwargs['prog_pk']
+
+        # print(self.request.GET.get('prog_pk'))
+            # self.request.GET.get('prog_pk')
+        return initial
+
+    # def form_valid(self, form):
+    #     form.instance.programme = self.request.prog_pk
+    #     return super().form_valid(form)
+
+
+
 
 

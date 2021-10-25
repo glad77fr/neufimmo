@@ -9,7 +9,7 @@
 <h1> Poster un nouveau sujet</h1>
 <br>
 <div class="form-group">
-    <form method="POST"> {% csrf_t oken %}
+    <form method="POST"> {% csrf_token %}
         {{form.as_p}}
         <input type="submit" class="btn btn-primary" value="Poster" />
     </form>
