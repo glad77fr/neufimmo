@@ -10,7 +10,19 @@
 <br>
 <div class="form-group">
     <form method="POST"> {% csrf_token %}
-        {{form.as_p}}
+<!--        {{form.as_p}}-->
+        <div class="col-3">
+            <label>Titre</label>
+            {{form.title}}
+        </div>
+        <br>
+        <div class="col-md-7">
+            <label>Message</label>
+            {{form.content}}
+        </div>
+        {{form.topic}}
+        {{form.programme}}
+        <br>
         <input type="submit" class="btn btn-primary" value="Poster" />
     </form>
 </div>

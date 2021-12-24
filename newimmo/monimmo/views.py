@@ -3,9 +3,28 @@ from django.http import HttpResponse
 from .models import Promoteur, Programme, Subject, Topic, Post
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.db.models import Q
-from .forms import SubjectModelForm
+from .forms import SubjectModelForm, PostModelForm,SignUpForm
 from django.shortcuts import render
+from django.urls import reverse
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
 
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user.refresh_from_db()  # load the profile instance created by the signal
+            #user.profile.birth_date = form.cleaned_data.get('birth_date')
+            user.save()
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=user.username, password=raw_password)
+            login(request, user)
+            return redirect('home')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/signup.html', {'form': form})
 
 class Detail_view(DetailView):
     model = Programme
@@ -57,18 +76,48 @@ class Subject_model_view(CreateView):
 
     def get_initial(self):
         initial = super().get_initial()
-        # initial["content"] = self.request.GET.get('prog_pk')
         initial["programme"] = self.kwargs['prog_pk']
-
-        # print(self.request.GET.get('prog_pk'))
-            # self.request.GET.get('prog_pk')
+        initial["topic"] =Topic.objects.get(slug=self.kwargs['topic_slug'])
         return initial
 
-    # def form_valid(self, form):
-    #     form.instance.programme = self.request.prog_pk
-    #     return super().form_valid(form)
+    def form_valid(self, form):
+        self.object = form.save(commit = False)
+        self.object.topic = Topic.objects.get(slug=self.kwargs['topic_slug'])
+        self.object.programme = Programme(pk=self.kwargs['prog_pk'])
+        self.object.save()
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        topic = Topic.objects.get(slug=self.kwargs['topic_slug'])
+        return reverse('sublist', kwargs={"prog_pk":self.kwargs['prog_pk'], "topic_slug" : self.kwargs['topic_slug'],
+                                          "slug":self.kwargs["slug"]})
+
+class Post_model_view(CreateView):
+    model = Post
+    template_name = "monimmo/forms/post_create.html"
+    form_class = PostModelForm
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["subject"] = self.kwargs["sub_pk"]
+        return initial
+
+    def form_valid(self, form):
+        self.object = form.save(commit = False)
+        self.object.subject = Subject(pk=self.kwargs["sub_pk"])
+        self.object.save()
+        return super().form_valid(form)
 
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        subject = Subject.objects.get(pk=self.kwargs["sub_pk"])
+        context['Sujet'] = subject.title
+        return context
+
+    def get_success_url(self):
+        return reverse('subdetail',kwargs={"slug": self.kwargs["slug"], "prog_pk":self.kwargs['prog_pk'], "topic_slug" : self.kwargs['topic_slug'],
+                                          "post_slug": self.kwargs["post_slug"], "sub_pk": self.kwargs["sub_pk"]})
 
 
 

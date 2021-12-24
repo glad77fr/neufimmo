@@ -7,8 +7,39 @@ h3 {
 font-size: medium;
 }
 
-a {
-color: red;
+a  {
+  color: black;
+}
+
+.space_before{
+margin-top:1rem;
+}
+
+.marge_gauche {
+margin-left: 2%;
+}
+
+a.connexionLoging {
+text-decoration:none;
+color: black;
+margin-left: 2rem;
+margin-right: 2rem;
+}
+
+a.connexionLoging:hover {
+ text-decoration: underline;
+}
+
+.horizontal-box {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.vertical-box {
+  display: flex;
+  flex-direction : column;
+  align-items: center;
 }
 
 strong {
@@ -16,16 +47,12 @@ font-weight : bold;
 color: #048B9A;
 }
 
-.nav-link{
-color: #048B9A !important;
-}
-
-.nav-link:hover{
-color: red;
-}
-
 .nav-link.active{
 color: #048B9A !important;
+}
+
+.duck_blue{
+color: #048B9A;
 }
 
 .montest {

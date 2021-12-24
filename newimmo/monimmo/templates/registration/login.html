@@ -1,0 +1,22 @@
+{% extends "monimmo/base.html" %}
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <div class="vertical-box space_before">
+        <h2>CONNEXION</h2>
+        <label class="form-label" >Identifiant</label>
+        {{ form.username }}
+        <label class="form-label">Mot de passe</label>
+        {{ form.password }}
+        <div class="space_before">
+            <input type="submit" value="Se connecter">
+        </div>
+        <div class="space_before">
+            <a href="{% url 'home' %}" >Retour à l'accueil</a>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

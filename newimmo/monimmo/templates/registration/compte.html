@@ -1,0 +1,26 @@
+{% extends "monimmo/base.html" %}
+{% load static %}
+{% block content %}
+
+    <br>
+    <div class="vertical-box ">
+        <h1 class="space_under"> MON COMPTE </h1>
+
+        <div class="horizontal-box">
+            {% if user.is_authenticated %}
+            <div>
+                <p> Bienvenue {{ user.username}} </p>
+                <a href="{% url 'logout' %}">Se déconnecter</a>
+            </div>
+                {% else %}
+            <div>
+                    <a class="connexionLoging" href="{% url 'login' %}">CONNEXION</a>
+            </div>
+            <div>
+               <a class="connexionLoging" href="{% url 'signup' %}">CRÉER UN COMPTE</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

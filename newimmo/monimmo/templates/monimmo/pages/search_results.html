@@ -14,15 +14,14 @@
       {% for programme in object_list %}
         <a href="{{programme.get_absolute_url}}" class="list-group-item list-group-item-action flex-column align-items-center w-75 ">
             <div class="d-flex flex-fill">
-                <h5 class="text-info"> {{ programme.nom }} </h5>
-                <small class="ml-2"> {{programme.get_statut_display }} </small>
+                 <h5 class="duck_blue"> {{ programme.nom }} </h5>
+                 <small class="ml-2"> {{programme.get_statut_display }} </small>
              </div>
-
-            <p class="mb-1"> {{programme.promoteur}}</p>
-            {% if programme.description %}
-            <p class="mb-1">{{programme.description}} </p>
-            {%endif%}
-            <small>Date de livraison prévue : {{programme.date_livraison_act}}</small>
+                <p class="mb-1"> {{programme.promoteur}}</p>
+                {% if programme.description %}
+                <p class="mb-1">{{programme.description}} </p>
+                {%endif%}
+                <small>Date de livraison prévue : {{programme.date_livraison_act}}</small>
         </a>
         {% endfor %}
   </div>

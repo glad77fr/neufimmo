@@ -1,0 +1,33 @@
+{% extends "monimmo/base.html" %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <title>{% block title %}Poster un message{% endblock %}</title>
+
+{% block content %}
+</head>
+<h1> Poster un nouveau message</h1>
+<br>
+<body>
+
+<h3> Sujet : {{Sujet}} </h3>
+    <div class="form-group">
+        <form method="POST"> {% csrf_token %}
+            <div class="col-md-7">
+                {{form.content}}
+                {{form.subject}}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Poster" />
+         </form>
+    </div>
+
+<br>
+
+
+</body>
+
+{% endblock %}
+</html>
