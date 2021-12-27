@@ -1,10 +1,46 @@
 {% extends "monimmo/base.html" %}
 
+<head>
+    <meta charset="UTF-8">
+    <title> {% block title %} Créer un compte {% endblock %}</title>
+</head>
+
 {% block content %}
-  <h2>Sign up</h2>
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
+      <div class="form-group vertical-box space_before">
+              <h2>Créer un compte</h2>
+            <div class="col-md-5 space_before">
+                <label>Identifiant</label>
+                {{ form.username }}
+                 <label class="space_before">Email</label>
+                {{ form.email }}
+                <label class="space_before"> Mot de passe </label>
+                {{ form.password1 }}
+                <label class="space_before">Confirmation du mot de passe</label>
+                {{ form.password2 }}
+                <label class="space_before"> Nom </label>
+                {{ form.last_name }}
+                <label class="space_before"> Prénom </label>
+                {{ form.first_name }}
+              </div>
+          <div class="space_before">
+            <button type="submit" class="btn btn-dark">CRÉER UN COMPTE</button>
+          </div>
+
+          <div class="space_before">
+             {% if form.errors %}
+                {% for field in form %}
+                {% for error in field.errors %}
+                <div>
+                       <strong>{{ error|escape }}</strong>
+                  </div>
+                {% endfor %}
+                {% endfor %}
+             {% endif %}
+          </div>
+      </div>
+<!--          {{ form.as_p }}-->
+
   </form>
 {% endblock %}
