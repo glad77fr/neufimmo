@@ -6,24 +6,23 @@
     <title>{% block title %}Créer un nouveau sujet{% endblock %}</title>
 </head>
 
-<h1> Poster un nouveau sujet</h1>
-<br>
-<div class="form-group">
+<div class="form-group vertical-box space_before">
+    <h1> Poster un nouveau sujet</h1><br>
     <form method="POST"> {% csrf_token %}
 <!--        {{form.as_p}}-->
-        <div class="col-3">
+        <div class="col-md-8 space_before">
             <label>Titre</label>
             {{form.title}}
         </div>
         <br>
-        <div class="col-md-7">
+        <div class="col-md-12">
             <label>Message</label>
             {{form.content}}
         </div>
         {{form.topic}}
         {{form.programme}}
         <br>
-        <input type="submit" class="btn btn-primary" value="Poster" />
+        <input type="submit" class="btn btn-dark" value="Poster" />
     </form>
 </div>
 {% endblock  %}

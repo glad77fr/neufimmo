@@ -38,6 +38,7 @@ class Programme(models.Model):
     date_livraison_act = models.DateField("Date de livraison prévue", blank=True, null=True)
     statut = models.IntegerField(choices=LIVRAISON_STATUTS)
     slug = AutoSlugField(populate_from='nom', always_update=True, max_length=255, editable=True, blank=True)
+    owner = models.ManyToManyField(User, through="Reservation")
 
     def get_absolute_url(self):
         return reverse('detail_programme',
@@ -55,10 +56,26 @@ class Programme(models.Model):
             self.date_livraison_act = self.date_livraison_ini
         super().save(*args, **kwargs)
 
+class Building(models.Model):
+    building_name = models.CharField(max_length=50)
+    programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
+    #street = models.CharField(max_length=200)
+    #city_code = models.IntegerField()
+
+    def __str__(self):
+        return self.building_name
+
+class Reservation(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
+    building = models.ForeignKey(Building, on_delete=models.CASCADE)
+    subscription_date = models.DateField(auto_now_add=True)
+
 class Topic(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=200)
     slug = AutoSlugField(populate_from='title', always_update=True, max_length=255, editable=True, blank=True)
+
     def __str__(self):
         return self.title
 
@@ -71,8 +88,8 @@ class Topic(models.Model):
 class Subject(models.Model):
     programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50, blank=True, null=True)
-    content = models.TextField(max_length=1500, blank=True, null=True)
+    title = models.CharField(max_length=50)
+    content = models.TextField(max_length=3000)
     post_at = models.DateTimeField(auto_now_add=True)
     slug = AutoSlugField(populate_from='title', always_update=True, max_length=255, editable=True, blank=True)
 
@@ -89,4 +106,3 @@ class Post(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     post_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField(max_length=1500, blank=True, null=True)
-

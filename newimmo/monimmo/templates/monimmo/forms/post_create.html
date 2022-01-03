@@ -9,24 +9,20 @@
 
 {% block content %}
 </head>
-<h1> Poster un nouveau message</h1>
-<br>
-<body>
-
-<h3> Sujet : {{Sujet}} </h3>
-    <div class="form-group">
-        <form method="POST"> {% csrf_token %}
-            <div class="col-md-7">
-                {{form.content}}
-                {{form.subject}}
-            </div>
-            <input type="submit" class="btn btn-primary" value="Poster" />
-         </form>
+    <body>
+    <div class="form-group vertical-box space_before">
+        <div class="col-md-5 space_before">
+            <h1> Poster un nouveau message</h1> <br>
+            <h3> Sujet : {{Sujet}} </h3>
+                <form method="POST"> {% csrf_token %}
+                    <div class="col-md-7 space_before">
+                        {{form.content}}
+                        {{form.subject}}
+                    </div>
+                    <input type="submit" class="btn btn-dark space_before" value="Poster" />
+                 </form>
+        </div>
     </div>
-
-<br>
-
-
 </body>
 
 {% endblock %}

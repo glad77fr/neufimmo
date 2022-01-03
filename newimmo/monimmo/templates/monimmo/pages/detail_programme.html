@@ -37,6 +37,13 @@
     <p> Avancement du programme : <br> <strong> {{programme.get_statut_display }}  </strong> </p>
 
     </p>
+
+
+    {% for reservation in programme.reservation_set.all %}
+    {% if user.pk != reservation.user.pk %}
+    <input type="submit" class="btn btn-dark" value="Suivre">
+    {% endif %}
+    {% endfor %}
   </div>
 
 
