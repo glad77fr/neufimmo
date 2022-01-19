@@ -48,17 +48,19 @@ class SubjectModelForm(forms.ModelForm):
     class Meta:
         model = Subject
         fields = (
-           "programme", "topic", "title", "content")
+           "programme", "user", "topic", "title", "content")
 
         widgets = {'programme': forms.HiddenInput(),
-                  "topic": forms.HiddenInput(),
-                  "title" : forms.TextInput(attrs={'class':'form-control','placeholder' : 'Titre du sujet'}),
-                  "content": forms.Textarea(attrs={'class': 'form-control', 'placeholder' : 'Contenu du sujet'})}
+                "user": forms.HiddenInput(),
+                "topic": forms.HiddenInput(),
+                "title" : forms.TextInput(attrs={'class':'form-control','placeholder' : 'Titre du sujet'}),
+                "content": forms.Textarea(attrs={'class': 'form-control', 'placeholder' : 'Contenu du sujet'})}
 
 class PostModelForm(forms.ModelForm) :
     class Meta:
         model = Post
-        fields = ("subject", "content")
+        fields = ("user", "subject", "content")
         widgets = {"subject" : forms.HiddenInput(),
+            "user": forms.HiddenInput(),
             "content": forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Tapez ici votre message'})}
         labels = { "content" : "Message"}

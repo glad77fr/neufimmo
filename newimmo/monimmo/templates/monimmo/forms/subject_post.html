@@ -9,11 +9,11 @@
 <div class="form-group vertical-box space_before">
     <h1> Poster un nouveau sujet</h1><br>
     <form method="POST"> {% csrf_token %}
-<!--        {{form.as_p}}-->
         <div class="col-md-8 space_before">
             <label>Titre</label>
             {{form.title}}
         </div>
+        <div> {{form.user}}</div>
         <br>
         <div class="col-md-12">
             <label>Message</label>

@@ -41,8 +41,14 @@
   <div>
     {{Subject.post_at}}
   </div>
+
     <div class="card-body">
-      <p class="card-text">{{Subject.content}} </p>
+      <div class="grid_card">
+        <div>{{Subject.user}}</div>
+        <div>
+          <p class="card-text">{{Subject.content}} </p>
+        </div>
+      </div>
     </div>
 </div>
 <br>
@@ -50,7 +56,15 @@
 <div class="card" style="width: 100rem;">
   <div> {{post.post_at}} </div>
     <div class="card-body">
-      <p class="card-text">{{post.content}}</p>
+      <div class="grid_card">
+        <div>{{Subject.user}}</div>
+        <div>
+          <p class="card-text">
+            {{post.content}}</p>
+        </div>
+      </div>
+
+    </div>
     </div>
 </div>
 <br>

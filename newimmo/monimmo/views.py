@@ -8,6 +8,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 
 
 def signup(request):
@@ -74,16 +75,18 @@ class Subject_model_view(CreateView):
     template_name = "monimmo/forms/subject_post.html"
     form_class = SubjectModelForm
 
-    def get_initial(self):
+    def get_initial(self): # On va définir les valeurs par défaut
         initial = super().get_initial()
         initial["programme"] = self.kwargs['prog_pk']
+        initial["user"] = self.request.user
         initial["topic"] =Topic.objects.get(slug=self.kwargs['topic_slug'])
         return initial
 
-    def form_valid(self, form):
+    def form_valid(self, form): # modifications après sauvegarde
         self.object = form.save(commit = False)
         self.object.topic = Topic.objects.get(slug=self.kwargs['topic_slug'])
         self.object.programme = Programme(pk=self.kwargs['prog_pk'])
+        self.object.user = self.request.user
         self.object.save()
         return super().form_valid(form)
 
@@ -99,15 +102,16 @@ class Post_model_view(CreateView):
 
     def get_initial(self):
         initial = super().get_initial()
+        initial["user"] = self.request.user
         initial["subject"] = self.kwargs["sub_pk"]
         return initial
 
     def form_valid(self, form):
         self.object = form.save(commit = False)
         self.object.subject = Subject(pk=self.kwargs["sub_pk"])
+        self.object.user = self.request.user
         self.object.save()
         return super().form_valid(form)
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

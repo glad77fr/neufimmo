@@ -16,6 +16,7 @@
             <h3> Sujet : {{Sujet}} </h3>
                 <form method="POST"> {% csrf_token %}
                     <div class="col-md-7 space_before">
+                        {{form.user}}
                         {{form.content}}
                         {{form.subject}}
                     </div>

@@ -87,6 +87,7 @@ class Topic(models.Model):
 
 class Subject(models.Model):
     programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
     content = models.TextField(max_length=3000)
@@ -103,6 +104,7 @@ class Subject(models.Model):
         super().save(*args, **kwargs)
 
 class Post(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     post_at = models.DateTimeField(auto_now_add=True)
     content = models.TextField(max_length=1500, blank=True, null=True)

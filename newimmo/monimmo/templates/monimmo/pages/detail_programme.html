@@ -36,22 +36,24 @@
     <p> Date de livraison prévue : <br> <strong>{{programme.date_livraison_act}}</strong> <br></p>
     <p> Avancement du programme : <br> <strong> {{programme.get_statut_display }}  </strong> </p>
 
-    </p>
 
-
-    {% for reservation in programme.reservation_set.all %}
-    {% if user.pk != reservation.user.pk %}
-    <input type="submit" class="btn btn-dark" value="Suivre">
+<!--    {% for reservation in programme.reservation_set.all %}-->
+<!--    {% if user.pk != reservation.user.pk %}-->
+<!--    <input type="submit" class="btn btn-dark" value="Suivre">-->
+<!--    {% endif %}-->
+<!--    {% endfor %}-->
+    {% if user.is_authenticated %}
+      {% if user not in programme.owner.all %}
+          <input type="submit" class="btn btn-dark" value="Suivre">
+       {% endif %}
+    {% else %}
+    <p> Se connecter pour suivre ce programme</p>
     {% endif %}
-    {% endfor %}
   </div>
 
-
-
-
 </div>
-
-{% endblock %}
+{% endblock content %}
 
 </body>
+
 </html>
