@@ -1,3 +1,9 @@
+.site_background{
+background-color: #f9fafa;
+height: 100vh;
+}
+
+
 .main_navbar {
 background-color: #344D59;
 }
@@ -5,9 +11,48 @@ background-color: #344D59;
 .nav_content_color {
 color : #fafafa;
 }
-.test {
+
+.img-fluid {
+ height: 400px;
+ width: 100%;
+}
+
+.nav_grid {
+display: grid;
+grid-template-columns: 1fr 4fr 2fr;
+background-color: #344D59;
+
+}
+
+.nav_container {
+display : flex;
+flex-direction: row;
+justify-content: space-around;
+flex-wrap: wrap;
+align-items: center;
+}
+
+.home_font {
     font-size: x-large;
     font-family: "Roboto";
+    color:#344D59;
+}
+
+.images_homepage{
+max-width: 100%;
+
+}
+
+.home_page {
+display: grid;
+grid-template-rows: 1fr 4fr;
+
+}
+
+.home_items {
+display: flex;
+align-items: center;
+justify-self: center;
 }
 
 h3 {
@@ -18,7 +63,7 @@ a  {
   color: black;
 }
 
-.space_before{
+.space_before {
 margin-top:1rem;
 }
 
