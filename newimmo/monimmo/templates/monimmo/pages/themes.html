@@ -28,15 +28,22 @@
 <p> Programme : {{Programme.nom}}</p>
 
 
-<ul class="list-group list-group-numbered">
+<ul class="list-group ">
     {% for topic, topic_count in Topics %}
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
+  <li class="list-group-item-theme">
+    <div class="theme-container">
       <a class="fw-bold" href={{Programme.get_absolute_url_themes}}/{{topic.slug}}>{{topic.title}}</a>
       <br>
       {{topic.description}}
     </div>
-    <span class="badge bg-primary rounded-pill">{{topic_count}}</span>
+    <div class="theme-container2">
+      <div class="nb_sub">
+        <span class="badge bg-primary rounded-pill">{{topic_count}}</span>
+      </div>
+      <div class="nb_sub_text">
+        <p> sujets</p>
+      </div>
+    </div>
   </li>
      {% endfor %}
 </ul>
