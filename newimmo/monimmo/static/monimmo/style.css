@@ -150,7 +150,6 @@ flex-direction: column;
 gap: 12px;
 }
 
-
 .grid_card {
   display: grid;
   grid-template-columns: 10% 75%;
@@ -171,26 +170,57 @@ display : flex;
 flex-direction : column;
 }
 
-.theme-container2 {
-display : grid;
-grid-template-columns: 1fr 1fr
-grid-template-rows: 1fr 1fr
+.grid-topic {
+display: grid;
+grid-template-rows: auto auto;
+grid-template-columns: 8fr 1fr;
+margin-left: 3em;
+margin-right: 6em;
+margin-bottom : 20px;
 }
 
-.nb_sub {
- grid-column: 2;
- grid-row: 2;
- border: solid;
+.topic1 {
+grid-area : 1 / 1;
+height:auto;
 }
 
-.nb_sub_text {
- display: flex;
- grid-column: 1;
- grid-row: 2;
- font-size: 0.8em;
- margin-right : 0.1em;
- color: grey;
- border: solid;
- align-items: center;
- justify-content: center;
+.topic2 {
+grid-area : 2 / 1;
+height: auto;
+}
+
+.topic3 {
+display: flex;
+grid-area : 1 / 2;
+height: 60%;
+}
+
+p.topic {
+margin-left: 10px;
+}
+
+p.topic2, span.badge.test2.rounded-pill{
+justify-content: center;
+}
+
+p.topic2 {
+color: grey;
+font-size: 11px;
+margin-right: 2px;
+}
+
+.test2{
+background-color: #137C8B;
+}
+
+.grid-subjects {
+display: grid;
+margin-left: 3em;
+margin-right: 3em;
+}
+
+a.btn.btn-sm.btn-primary.subjects {
+width: 8em;
+height: auto;
+margin-bottom: 10px;
 }

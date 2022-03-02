@@ -31,22 +31,24 @@
   </ol>
 </nav>
 
-<h5>Thème : {{active_topic.title}}</h5>
+<div class="grid-subjects">
+  <h5 class="subjects">Thème : {{active_topic.title}}</h5>
 
-<a type="button" href="form_subject/" class="btn btn-sm btn-primary"  >Nouveau sujet</a>
-<br>
-<br>
+  <a type="button" href="form_subject/" class="btn btn-sm btn-primary subjects"  >Nouveau sujet</a>
+  <br>
+  <br>
 
-<li class="list-group list-group-numbered">
-    {% for subject, nb_post in topic %}
-  <li class="list-group-item d-flex justify-content-between align-items-start">
-    <div class="ms-2 me-auto">
-      <a class="fw-bold" href={{subject.slug}}/{{subject.pk}}>{{subject.title}}</a>
-    </div>
-    <span class="badge bg-primary rounded-pill">{{nb_post}}</span>
+  <li class="list-group list-group-numbered">
+      {% for subject, nb_post in topic %}
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+        <a class="fw-bold" href={{subject.slug}}/{{subject.pk}}>{{subject.title}}</a>
+      </div>
+      <span class="badge bg-primary rounded-pill">{{nb_post}}</span>
+    </li>
   </li>
-</li>
-</body>
-{% endfor %}
 
+{% endfor %}
+</div>
 {% endblock %}
+</body>

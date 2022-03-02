@@ -25,28 +25,22 @@
   </li>
 </ul>
 <br>
-<p> Programme : {{Programme.nom}}</p>
 
-
-<ul class="list-group ">
+<p class="topic"> Programme : <strong> {{Programme.nom}} </strong> </p>
     {% for topic, topic_count in Topics %}
-  <li class="list-group-item-theme">
-    <div class="theme-container">
-      <a class="fw-bold" href={{Programme.get_absolute_url_themes}}/{{topic.slug}}>{{topic.title}}</a>
-      <br>
-      {{topic.description}}
-    </div>
-    <div class="theme-container2">
-      <div class="nb_sub">
-        <span class="badge bg-primary rounded-pill">{{topic_count}}</span>
+    <div class="grid-topic">
+      <div class="topic1">
+        <a class="fw-bold" href={{Programme.get_absolute_url_themes}}/{{topic.slug}}>{{topic.title}}</a>
       </div>
-      <div class="nb_sub_text">
-        <p> sujets</p>
+      <div class="topic2">
+        {{topic.description}}
+      </div>
+      <div class="topic3">
+        <p class="topic2"> sujets</p>
+        <span class="badge test2 rounded-pill">{{topic_count}}</span>
       </div>
     </div>
-  </li>
      {% endfor %}
-</ul>
 
 {% endblock %}
 </body>
