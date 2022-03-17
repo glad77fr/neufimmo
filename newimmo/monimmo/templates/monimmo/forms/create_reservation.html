@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "monimmo/base.html" %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Réservation {% endblock %}</title>
+</head>
+<body>
+{% block content %}
+    <form method="POST"> {% csrf_token %}
+        <div class="formsContainer">
+            <h2> Ajouter un appartement du programme {{programme_nom}}</h2>
+            <p> Renseignez votre reservation pour accéder aux information de votre programme</p>
+            {{form.user}}
+            {{form.programme}}
+            {{form.app_ref}}
+            {{form.app_ref.errors }}
+            <div class="formsbutton">
+                <a href= "{% url 'detail_programme' slug=programme_slug pk=programme_pk %}">
+                    <input type="button" class="btn btn-outline-secondary btn-cancel" value="Annuler">
+                </a>
+                <input type="submit" class="btn btn-dark button-post" value="Poster" />
+            </div>
+        </div>
+
+    </form>
+{% endblock %}
+</body>
+</html>

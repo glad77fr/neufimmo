@@ -56,20 +56,21 @@ class Programme(models.Model):
             self.date_livraison_act = self.date_livraison_ini
         super().save(*args, **kwargs)
 
-class Building(models.Model):
-    building_name = models.CharField(max_length=50)
-    programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
-    #street = models.CharField(max_length=200)
-    #city_code = models.IntegerField()
-
-    def __str__(self):
-        return self.building_name
+# class Building(models.Model):
+#     building_name = models.CharField(max_length=50)
+#     programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
+#     #street = models.CharField(max_length=200)
+#     #city_code = models.IntegerField()
+#
+#     def __str__(self):
+#         return self.building_name
 
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
-    building = models.ForeignKey(Building, on_delete=models.CASCADE)
+    # building = models.ForeignKey(Building, on_delete=models.CASCADE)
     subscription_date = models.DateField(auto_now_add=True)
+    app_ref = models.CharField(max_length=50)
 
 class Topic(models.Model):
     title = models.CharField(max_length=50)

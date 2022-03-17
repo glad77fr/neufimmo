@@ -1,7 +1,8 @@
 from django import forms
-from .models import Subject, Post
+from .models import Subject, Post, Reservation
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 
 class SignUpForm(UserCreationForm):
@@ -64,3 +65,20 @@ class PostModelForm(forms.ModelForm) :
             "user": forms.HiddenInput(),
             "content": forms.Textarea(attrs={'class':'form-control', 'placeholder': 'Tapez ici votre message'})}
         labels = { "content" : "Message"}
+
+class ReservationModelForm(forms.ModelForm):
+    class Meta:
+        model = Reservation
+        fields = ("user", "programme", "app_ref")
+        widgets = {"user" : forms.HiddenInput(),
+                   "programme" : forms.HiddenInput(),
+                    "app_ref" : forms.TextInput(attrs={'class':'form-control w-25', 'placeholder': "Numéro de l'appartement"})}
+
+        labels = {"user": "utilisateur", "programme" : "programme",
+               "app_ref" : "lot appartement"}
+
+    def clean_app_ref(self):
+        app_ref = self.cleaned_data["app_ref"]
+        if Reservation.objects.filter(app_ref__iexact=app_ref).exists():
+            raise ValidationError("Ce lot existe déjà")
+        return app_ref

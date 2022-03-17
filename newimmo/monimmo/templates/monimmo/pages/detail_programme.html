@@ -45,6 +45,10 @@
     {% if user.is_authenticated %}
       {% if user not in programme.owner.all %}
           <input type="submit" class="btn btn-dark" value="Suivre">
+      {% else %}
+    <form action="reservation/">
+        <input type="submit" class="btn btn-dark submitbutton" value="Ajouter une réservation">
+    </form>
        {% endif %}
     {% else %}
     <p> Se connecter pour suivre ce programme</p>

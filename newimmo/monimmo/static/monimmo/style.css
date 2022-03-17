@@ -224,3 +224,26 @@ width: 8em;
 height: auto;
 margin-bottom: 10px;
 }
+
+.formsContainer {
+display : flex;
+flex-direction: column;
+margin-top : 2em;
+margin-left : 1em;
+width: 70%;
+align-items: flex-start
+}
+
+.formsbutton {
+display : flex;
+flex-direction: row;
+}
+.button-post {
+margin-top : 1em;
+}
+
+.btn-cancel {
+background-color : white;
+margin-top : 1em;
+margin-right : 1em;
+}

@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Promoteur, Programme, Subject, Topic, Post
+from .models import Promoteur, Programme, Subject, Topic, Post, Reservation
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.db.models import Q
-from .forms import SubjectModelForm, PostModelForm,SignUpForm
+from .forms import SubjectModelForm, PostModelForm, SignUpForm, ReservationModelForm
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import login, authenticate
@@ -122,6 +122,28 @@ class Post_model_view(CreateView):
     def get_success_url(self):
         return reverse('subdetail',kwargs={"slug": self.kwargs["slug"], "prog_pk":self.kwargs['prog_pk'], "topic_slug" : self.kwargs['topic_slug'],
                                           "post_slug": self.kwargs["post_slug"], "sub_pk": self.kwargs["sub_pk"]})
+
+class post_reservation(CreateView):
+    model = Reservation
+    template_name = "monimmo/forms/create_reservation.html"
+    form_class = ReservationModelForm
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial["user"] = self.request.user
+        initial["programme"] = self.kwargs["prog_pk"]
+        return initial
+
+    def get_success_url(self):
+        return reverse('detail_programme', kwargs={"slug" : self.kwargs["slug"], "pk" :self.kwargs["prog_pk"]})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        programme = Programme.objects.get(pk=self.kwargs["prog_pk"])
+        context['programme_slug'] = programme.slug
+        context['programme_pk'] = programme.pk
+        context['programme_nom'] =programme.nom
+        return context
 
 
 

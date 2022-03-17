@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Promoteur, Programme, Post, Subject, Topic, Reservation, Building
+from .models import Promoteur, Programme, Post, Subject, Topic, Reservation
 
 class PromoteurAdmin(admin.ModelAdmin):
     list_filter = ('nom',)
@@ -37,5 +37,5 @@ admin.site.register(Post, PostAdmin)
 admin.site.register(Subject, SubjectAdmin)
 admin.site.register(Topic, TopicAdmin)
 admin.site.register(Reservation, ReservationAdmin)
-admin.site.register(Building, BuildingAdmin)
+#admin.site.register(Building, BuildingAdmin)
 # Register your models here.
