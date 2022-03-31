@@ -44,7 +44,9 @@
 <!--    {% endfor %}-->
     {% if user.is_authenticated %}
       {% if user not in programme.owner.all %}
+     <form action="reservation/">
           <input type="submit" class="btn btn-dark" value="Suivre">
+     </form>
       {% else %}
     <form action="reservation/">
         <input type="submit" class="btn btn-dark submitbutton" value="Ajouter une réservation">

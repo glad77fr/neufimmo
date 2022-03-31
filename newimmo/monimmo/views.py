@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+from .decorations import have_reservation
+
 from .models import Promoteur, Programme, Subject, Topic, Post, Reservation
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.db.models import Q
@@ -50,7 +53,8 @@ def SubjectListView(request, prog_pk, topic_slug, slug):
         list_post.append(len(Post.objects.filter(subject=sub.pk)))
     return render(request, 'monimmo/pages/subjects.html', {"Sub_List":List_Sub, "Programme":Prog,
                                                            "topic" : zip(List_Sub, list_post), "test":list_post, "active_topic" : topic})
-
+#@login_required(login_url="compte")
+@have_reservation
 def SubjectDetail(request,prog_pk, topic_slug, slug,sub_pk, post_slug):
     Prog = Programme.objects.get(pk=prog_pk)
     sub = Subject.objects.get(pk=sub_pk)

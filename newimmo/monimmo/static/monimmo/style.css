@@ -3,6 +3,16 @@ background-color: #f9fafa;
 height: 100vh;
 }
 
+@media (max-width: 1100px) {
+  .bi.bi-building.nav_content_color {
+  display: none;
+  }
+  .navbar.nav_grid {
+    grid-template-columns: 1fr 0fr 1fr;
+    }
+ }
+
+
 .main_navbar {
 background-color: #344D59;
 }
@@ -173,7 +183,7 @@ flex-direction : column;
 .grid-topic {
 display: grid;
 grid-template-rows: auto auto;
-grid-template-columns: 8fr 1fr;
+grid-template-columns: 4fr 1fr;
 margin-left: 3em;
 margin-right: 6em;
 margin-bottom : 20px;
@@ -215,6 +225,26 @@ background-color: #137C8B;
 
 .grid-subjects {
 display: grid;
+grid-template-columns: 2fr 1fr;
+margin-left: 3em;
+margin-right: 3em;
+}
+
+.forum_background{
+background-color: white;
+width: 100%;
+}
+
+.containerSubInfo {
+height: auto;
+grid-area: 1/1;
+}
+
+.containerSubReply{
+grid-area  : 1/2;
+}
+
+.subjects-infos {
 margin-left: 3em;
 margin-right: 3em;
 }

@@ -12,7 +12,7 @@
     <form method="POST"> {% csrf_token %}
         <div class="formsContainer">
             <h2> Ajouter un appartement du programme {{programme_nom}}</h2>
-            <p> Renseignez votre reservation pour accéder aux information de votre programme</p>
+            <p> Renseignez la référence du lot réservé sur le programme (ex : A134) pour accéder aux information de votre programme </p>
             {{form.user}}
             {{form.programme}}
             {{form.app_ref}}
