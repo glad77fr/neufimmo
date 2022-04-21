@@ -5,6 +5,9 @@ from django.dispatch import receiver
 from autoslug import AutoSlugField
 from django.urls import reverse
 from django.utils.text import slugify
+from tinymce.models import HTMLField
+from ckeditor.fields import RichTextField
+
 
 # Create your models here.
 class Promoteur(models.Model):
@@ -91,7 +94,8 @@ class Subject(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
-    content = models.TextField(max_length=3000)
+    content = RichTextField(blank=True, null=True)
+    #content = models.TextField(max_length=3000)
     post_at = models.DateTimeField(auto_now_add=True)
     slug = AutoSlugField(populate_from='title', always_update=True, max_length=255, editable=True, blank=True)
 

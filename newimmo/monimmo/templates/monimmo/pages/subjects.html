@@ -34,14 +34,12 @@
 
 <div class="subjects-infos">
   <h5 class="subjects">Thème : {{active_topic.title}}</h5>
-
   <a type="button" href="form_subject/" class="btn btn-sm btn-primary subjects"  >Nouveau sujet</a>
 </div>
-
   {% for subject, nb_post in topic %}
 <div class="grid-subjects">
       <div class="containerSubInfo">
-          <a class="fw-bold" href={{subject.slug}}/{{subject.pk}}>{{subject.title}}</a>
+          <a class="forum-title" href={{subject.slug}}/{{subject.pk}}>{{subject.title}} </a>
       </div>
       <div class="containerSubReply">
           <span class="badge bg-primary rounded-pill">{{nb_post}}</span>

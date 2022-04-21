@@ -16,6 +16,7 @@ urlpatterns = [
     path('<slug:slug>/<int:prog_pk>/themes/<slug:topic_slug>/', SubjectListView, name='sublist'),
     path('<slug:slug>/<int:prog_pk>/themes/<slug:topic_slug>/<slug:post_slug>/<int:sub_pk>/', SubjectDetail, name="subdetail"),
     path('<slug:slug>/<int:prog_pk>/themes/<slug:topic_slug>/<slug:post_slug>/<int:sub_pk>/post_reply/', Post_model_view.as_view(), name="post_reply"),
-    path('<slug:slug>/<int:prog_pk>/reservation/',post_reservation.as_view() , name="reservation")
+    path('<slug:slug>/<int:prog_pk>/reservation/',post_reservation.as_view() , name="reservation"),
+    path(r'^tinymce/', include('tinymce.urls')),
 ]
 
