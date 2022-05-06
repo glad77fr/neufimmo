@@ -98,6 +98,7 @@ class Subject(models.Model):
     #content = models.TextField(max_length=3000)
     post_at = models.DateTimeField(auto_now_add=True)
     slug = AutoSlugField(populate_from='title', always_update=True, max_length=255, editable=True, blank=True)
+    post_image = models.ImageField(null=True, blank=True, upload_to="images/")
 
     def __str__(self):
         return self.title

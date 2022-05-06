@@ -10,7 +10,7 @@
 
 <div class="form-group vertical-box space_before">
     <h1> Poster un nouveau sujet</h1><br>
-    <form method="POST"> {% csrf_token %}
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
         <div class="col-md-8 space_before">
             <label>Titre</label>
             {{form.title}}
@@ -19,15 +19,11 @@
         <br>
         <div class="col-md-12">
             <label>Message</label>
-              <br>
+            <br>
             {{form.media}}
-             {{form.content}}
-<!--            {% block extrahead %}-->
-<!--            {{ form.media }}-->
-<!--        {% endblock %}-->
-
-
-
+            {{form.content}}
+            <br>
+            {{form.post_image}}
         </div>
         {{form.topic}}
         {{form.programme}}

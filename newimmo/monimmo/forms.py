@@ -52,7 +52,7 @@ class SubjectModelForm(forms.ModelForm):
     class Meta:
         model = Subject
         fields = (
-           "programme", "user", "topic", "title", "content")
+           "programme", "user", "topic", "title", "content", "post_image")
 
         widgets = {'programme': forms.HiddenInput(),
                 "user": forms.HiddenInput(),

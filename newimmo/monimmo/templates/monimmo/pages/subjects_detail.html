@@ -37,38 +37,39 @@
 <br>
 <br>
 
-<div class="card" style="width: 100rem;">
-  <div>
+<!--Partie supérieur contenant les info du premier post (sujet)-->
+<div class="topic-container">
+  <div class="topic-date-container">
     {{Subject.post_at}}
   </div>
-
-    <div class="card-body">
-      <div class="grid_card">
-        <div>{{Subject.user}}</div>
-        <div>
-          <p class="card-text">{{Subject.content|safe}} </p>
-        </div>
-      </div>
+  <div class="topic-author-container">
+    {{Subject.user}}
+  </div>
+  <div class="topic-text-container">
+    <div class="image">
+      {{Subject.content|safe}}
+      {% if Subject.post_image %}
+        <img src="{{ Subject.post_image.url }}">
+    {% endif %}
     </div>
+  </div>
 </div>
-<br>
-{% for post in Posts %}
-<div class="card" style="width: 100rem;">
-  <div> {{post.post_at}} </div>
-    <div class="card-body">
-      <div class="grid_card">
-        <div>{{Subject.user}}</div>
-        <div>
-          <p class="card-text">
-            {{post.content}}</p>
-        </div>
-      </div>
 
-    </div>
-    </div>
+<br>
+<!-- Partie inférieure contenant les posts-->
+{% for post in Posts %}
+<div class="topic-container">
+  <div class="topic-date-container">
+    {{post.post_at}}
+  </div>
+  <div class="topic-author-container">
+    {{post.user}}
+  </div>
+  <div class="topic-text-container">
+    {{post.content|safe}}
+  </div>
 </div>
 <br>
 {% endfor %}
-
 </body>
 {% endblock %}

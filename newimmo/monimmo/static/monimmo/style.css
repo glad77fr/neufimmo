@@ -288,3 +288,40 @@ background-color : white;
 margin-top : 1em;
 margin-right : 1em;
 }
+
+.img {
+max-width:inherit;
+max-height:inherit;
+}
+
+.topic-container {
+display : grid;
+grid-template-areas:
+"a a a a a a a a"
+"b c c c c c c c";
+margin-left : 1em;
+grid-template-columns : repeat(8,1fr);
+grid-template-rows : 20px 1fr;
+}
+
+.topic-date-container {
+grid-area : a;
+background-color : yellow;
+}
+
+.topic-author-container {
+display : flex;
+grid-area : b;
+background-color: blue;
+}
+
+.topic-text-container {
+display : flex;
+grid-area : c;
+background-color: red;
+max-width : 100%
+}
+
+img {
+max-width : 100%
+}
