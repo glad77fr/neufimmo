@@ -11,6 +11,7 @@
 {% block content %}
 <body>
 
+
 <ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link" href={{Programme.get_absolute_url}}>Info sur le programme</a>
@@ -24,36 +25,41 @@
 </ul>
 
 <br>
-<p> Programme : {{Programme.nom}}</p>
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href={{Programme.get_absolute_url}}themes>Thèmes</a></li>
-    <li class="breadcrumb-item" aria-current="page"><a href={{Programme.get_absolute_url}}themes/{{active_topic.slug}}>{{active_topic.title}}</a></li>
-    <li class="breadcrumb-item active" aria-current="page">{{Subject.title}}</li>
-  </ol>
-</nav>
-<h5> Sujet : {{Subject.title}}</h5>
-<a type="button" href="post_reply/" class="btn btn-sm btn-primary">Répondre</a>
-<br>
-<br>
+<div class="marge_gauche">
+  <p> Programme : {{Programme.nom}}</p>
+  <nav class="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href={{Programme.get_absolute_url}}themes>Thèmes</a></li>
+      <li class="breadcrumb-item" aria-current="page"><a href={{Programme.get_absolute_url}}themes/{{active_topic.slug}}>{{active_topic.title}}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{Subject.title}}</li>
+    </ol>
+  </nav>
+  <h5> Sujet : {{Subject.title}}</h5>
+  <a type="button" href="post_reply/" class="btn btn-sm btn-primary">Répondre</a>
+  <br>
+  <br>
+</div>
+  <!--Partie supérieur contenant les info du premier post (sujet)-->
+  <div class="topic-container">
+    <div class="topic-date-container">
+      {{Subject.post_at}}
+    </div>
 
-<!--Partie supérieur contenant les info du premier post (sujet)-->
-<div class="topic-container">
-  <div class="topic-date-container">
-    {{Subject.post_at}}
-  </div>
-  <div class="topic-author-container">
-    {{Subject.user}}
-  </div>
-  <div class="topic-text-container">
-    <div class="image">
-      {{Subject.content|safe}}
-      {% if Subject.post_image %}
-        <img src="{{ Subject.post_image.url }}">
-    {% endif %}
+    <div class="topic-author-container">
+      <div class="topic-avatar-container">
+      {{Subject.user|make_list|first|capfirst}}
+      </div>
+      {{Subject.user}}
+    </div>
+    <div class="topic-text-container">
+      <div class="image">
+        {{Subject.content|safe}}
+        {% if Subject.post_image %}
+          <img src="{{ Subject.post_image.url }}">
+      {% endif %}
+      </div>
     </div>
   </div>
-</div>
 
 <br>
 <!-- Partie inférieure contenant les posts-->

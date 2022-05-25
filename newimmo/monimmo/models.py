@@ -21,6 +21,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True)
+    avatar_img = models.ImageField(null=True, blank=True, upload_to="images/")
 
     @receiver(post_save, sender=User)
     def update_user_profile(sender, instance, created, **kwargs):
