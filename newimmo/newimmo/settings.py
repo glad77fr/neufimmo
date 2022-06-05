@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'autoslug',
-    'emoji_picker',
     'tinymce',
     'ckeditor',
 ]

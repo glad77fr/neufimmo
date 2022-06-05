@@ -21,13 +21,12 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500, blank=True)
     birth_date = models.DateField(null=True, blank=True)
-    avatar_img = models.ImageField(null=True, blank=True, upload_to="images/")
+    avatar_img = models.ImageField(null=True, blank=True, upload_to="images/avatars/")
 
     @receiver(post_save, sender=User)
-    def update_user_profile(sender, instance, created, **kwargs):
+    def create_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
-        instance.profile.save()
 
     @receiver(post_save, sender=User)
     def save_user_profile(sender, instance, **kwargs):
@@ -59,15 +58,6 @@ class Programme(models.Model):
         if self.date_livraison_act is None:
             self.date_livraison_act = self.date_livraison_ini
         super().save(*args, **kwargs)
-
-# class Building(models.Model):
-#     building_name = models.CharField(max_length=50)
-#     programme = models.ForeignKey(Programme, on_delete=models.CASCADE)
-#     #street = models.CharField(max_length=200)
-#     #city_code = models.IntegerField()
-#
-#     def __str__(self):
-#         return self.building_name
 
 class Reservation(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

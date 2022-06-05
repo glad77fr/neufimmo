@@ -3,13 +3,14 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .decorations import have_reservation
 
-from .models import Promoteur, Programme, Subject, Topic, Post, Reservation
+from .models import Promoteur, Programme, Subject, Topic, Post, Reservation, Profile, User
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.db.models import Q
 from .forms import SubjectModelForm, PostModelForm, SignUpForm, ReservationModelForm
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth import login, authenticate
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 
@@ -20,8 +21,8 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the profile instance created by the signal
-            #user.profile.birth_date = form.cleaned_data.get('birth_date')
-            #user.save()
+            user.avatar_img = form.cleaned_data.get('avatar_img')
+            user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
@@ -29,6 +30,7 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/signup.html', {'form': form})
+
 
 class Detail_view(DetailView):
     model = Programme
@@ -60,9 +62,10 @@ def SubjectDetail(request,prog_pk, topic_slug, slug,sub_pk, post_slug):
     sub = Subject.objects.get(pk=sub_pk)
     posts = Post.objects.filter(subject=sub_pk)
     topic = Topic.objects.get(slug=topic_slug)
+    x = Profile.objects.get(user=sub.user)
 
     return render(request, 'monimmo/pages/subjects_detail.html',
-                  {"Subject":sub, "Posts":posts,"Programme":Prog, "active_topic" : topic })
+                  {"Subject":sub, "Posts":posts,"Programme":Prog, "active_topic" : topic, "x": x})
 
 class SearchResultsView(ListView):
     model = Programme

@@ -1,9 +1,8 @@
 from django import forms
-from .models import Subject, Post, Reservation
+from .models import Subject, Post, Reservation, Profile
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from emoji_picker.widgets import EmojiPickerTextInputAdmin, EmojiPickerTextareaAdmin
 
 
 class SignUpForm(UserCreationForm):
@@ -47,7 +46,6 @@ class SignUpForm(UserCreationForm):
         fields = ('username', 'email', 'password1', 'password2', )
 
 class SubjectModelForm(forms.ModelForm):
-    #content = forms.CharField(widget=EmojiPickerTextareaAdmin(attrs={'class': 'form-control', 'placeholder' : 'Contenu du sujet'}))
 
     class Meta:
         model = Subject
